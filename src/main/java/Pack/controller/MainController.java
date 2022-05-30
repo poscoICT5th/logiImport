@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import Pack.vo.TestVo;
+import Pack.service.ImportService;
 import Pack.service.TestService;
 import Pack.vo.LogiImportVo;
 
@@ -18,6 +19,8 @@ import Pack.vo.LogiImportVo;
 public class MainController {
 	@Autowired
 	TestService testService;
+	@Autowired
+	ImportService importService;
 	
 	@GetMapping("/test")
 	public List test() {
@@ -31,7 +34,7 @@ public class MainController {
 	@GetMapping("/import")
 	public List importAll() {
 		System.out.println("import all");
-	    List<LogiImportVo> importAll = testService.selectAll();
+	    List<LogiImportVo> importAll = importService.selectAll();
 	    System.out.println(importAll);
 
 	    return importAll;

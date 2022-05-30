@@ -10,6 +10,6 @@ import Pack.vo.LogiImportVo;
 
 @Repository
 @Mapper
-public interface TestMapper {
-    List<TestVo> selectTest();
+public interface ImportMapper {
+    List<LogiImportVo> selectAll();
 }

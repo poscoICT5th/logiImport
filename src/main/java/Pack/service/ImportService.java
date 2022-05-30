@@ -5,16 +5,16 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import Pack.vo.TestVo;
-import Pack.mapper.TestMapper;
+import Pack.mapper.ImportMapper;
 import Pack.vo.LogiImportVo;
 
 @Service
-public class TestService {
+public class ImportService {
     @Autowired
-    public TestMapper mapper;
+    public ImportMapper importMapper;
 
-    public List<TestVo> selectTest() {
-        return mapper.selectTest();
+    public List<LogiImportVo> selectAll() {
+    	System.out.println(1111);
+        return importMapper.selectAll();
     }
 }
