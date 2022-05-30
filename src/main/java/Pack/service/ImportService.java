@@ -14,7 +14,28 @@ public class ImportService {
     public ImportMapper importMapper;
 
     public List<LogiImportVo> selectAll() {
-    	System.out.println(1111);
         return importMapper.selectAll();
     }
+    
+    public LogiImportVo selectByInstNo() {
+    	return importMapper.selectByInstNo();
+    }
+
+    public List<LogiImportVo> selectSome() {
+    	return importMapper.selectSome();
+    }
+
+	public int insert(Object data) {
+		LogiImportVo logiImportVo = null;
+		return 1;
+		//return importMapper.insert(logiImportVo);
+	}
+
+	public int delete(String instructionNo) {
+		return importMapper.delete(instructionNo);
+	}
+
+	public int confirm(String instructionNo) {
+		return importMapper.confirm(instructionNo);
+	}
 }

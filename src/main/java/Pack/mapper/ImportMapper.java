@@ -12,4 +12,14 @@ import Pack.vo.LogiImportVo;
 @Mapper
 public interface ImportMapper {
     List<LogiImportVo> selectAll();
+    
+    LogiImportVo selectByInstNo();
+
+	int insert(LogiImportVo logiImportVo);
+
+	List<LogiImportVo> selectSome();
+
+	int delete(String instructionNo);
+
+	int confirm(String instructionNo);
 }
