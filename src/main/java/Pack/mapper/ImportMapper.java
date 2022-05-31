@@ -6,6 +6,8 @@ import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
 import Pack.vo.TestVo;
+import Pack.vo.LogiImportDTO;
+import Pack.vo.LogiImportSearchDTO;
 import Pack.vo.LogiImportVo;
 
 @Repository
@@ -15,9 +17,10 @@ public interface ImportMapper {
     
     LogiImportVo selectByInstNo();
 
-	int insert(LogiImportVo logiImportVo);
+	int insert(LogiImportDTO logiImportDTO);
+//	int insert(LogiImportVo logiImportDTO);
 
-	List<LogiImportVo> selectSome();
+	List<LogiImportVo> selectSome(LogiImportSearchDTO logiImportSearchDTO);
 
 	int delete(String instructionNo);
 

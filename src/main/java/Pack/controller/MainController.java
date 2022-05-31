@@ -2,6 +2,7 @@ package Pack.controller;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.websocket.server.PathParam;
 
@@ -15,11 +16,17 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import Pack.vo.TestVo;
 import Pack.service.ImportService;
 import Pack.service.TestService;
+import Pack.vo.LogiImportDTO;
+import Pack.vo.LogiImportSearchDTO;
 import Pack.vo.LogiImportVo;
 
 @CrossOrigin(origins = "*")
@@ -50,18 +57,22 @@ public class MainController {
 	}
 	
 	@GetMapping("/search")
-	public  List importSearch(@RequestBody HashMap conditions) {
+	public List importSearch(LogiImportSearchDTO logiImportSearchDTO) {
 		System.out.println("import search");
-	    List<LogiImportVo> importSearch = importService.selectSome();
+		System.out.println(logiImportSearchDTO);
+//		Object json = (Object) myHeader.get("conditions");
+//		System.out.println(json);
+	    List<LogiImportVo> importSearch = importService.selectSome(logiImportSearchDTO);
 		return importSearch;
 	}
 	
-	@PostMapping(path = "/import")
-	public boolean importAdd(@RequestBody HashMap data) {
+	@PostMapping("/import")
+	public boolean importAdd(@RequestBody LogiImportDTO data) {
+//	public boolean importAdd(@RequestBody LogiImportVo data) {
 		System.out.println("post 들어감");
 		System.out.println(data); 
 		int result = importService.insert(data);
-		return true;
+		return result==1?true:false;
 	}
 	
 	@DeleteMapping("import/{instructionNo}")
