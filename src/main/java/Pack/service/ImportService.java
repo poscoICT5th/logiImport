@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import Pack.mapper.ImportMapper;
 import Pack.vo.LogiImportDTO;
+import Pack.vo.LogiImportDeleteList;
 import Pack.vo.LogiImportSearchDTO;
 import Pack.vo.LogiImportVo;
 
@@ -51,5 +52,9 @@ public class ImportService {
 
 	public int confirm(String instructionNo) {
 		return importMapper.confirm(instructionNo);
+	}
+
+	public int deletes(LogiImportDeleteList logiImportDeleteList) {
+		return importMapper.deletes(logiImportDeleteList.getLogiImportDeleteList());
 	}
 }

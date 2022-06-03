@@ -26,6 +26,7 @@ import Pack.vo.TestVo;
 import Pack.service.ImportService;
 import Pack.service.TestService;
 import Pack.vo.LogiImportDTO;
+import Pack.vo.LogiImportDeleteList;
 import Pack.vo.LogiImportSearchDTO;
 import Pack.vo.LogiImportVo;
 
@@ -77,6 +78,14 @@ public class MainController {
 	public boolean importDelete(@PathVariable String instructionNo) {
 		System.out.println(instructionNo);
 		int result = importService.delete(instructionNo);
+		return result==1?true:false;
+	}
+	
+	@DeleteMapping("import")
+	public boolean importDeletes(@RequestBody LogiImportDeleteList logiImportDeleteList) {
+		System.out.println("delete List");
+		System.out.println(logiImportDeleteList);
+		int result = importService.deletes(logiImportDeleteList);
 		return result==1?true:false;
 	}
 	

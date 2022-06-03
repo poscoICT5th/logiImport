@@ -72,10 +72,17 @@
 		where instruction_no=#{instructionNo};
     </delete>
     
+    <delete id="deletes" parameterType="List">
+    	<foreach collection="logiImportDeleteList" item="instructionNo" index="index">
+		    delete
+			from Import
+			where instruction_no=#{instructionNo};
+		</foreach>
+    </delete>
+    
     <update id="confirm" parameterType="String">
     	UPDATE Import 
     	SET status = "입고완료" 
     	WHERE instruction_no=#{instructionNo};
     </update>
-    
 </mapper>
