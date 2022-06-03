@@ -42,8 +42,6 @@ public class MainController {
 	public List test() {
 	    List<TestVo> testList = testService.selectTest();
 	    System.out.println(testList);
-	
-
 	    return testList;
 	}
 	

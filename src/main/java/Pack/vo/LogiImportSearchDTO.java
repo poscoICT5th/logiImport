@@ -36,7 +36,7 @@ public class LogiImportSearchDTO {
 	double max_width;
 	String order_date;
 	String target;
-	String inst_reg_date_Date;
-	String inst_deatline;
+	String inst_reg_date;
+	String inst_deadline;
 	String done_date;
 }

@@ -45,7 +45,6 @@ public class ImportService {
 //		return importMapper.insert(logiImportDTO);
 //	}
 
-    
 	public int delete(String instructionNo) {
 		return importMapper.delete(instructionNo);
 	}

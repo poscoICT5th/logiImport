@@ -57,10 +57,11 @@ public class LogiImportDTO {
 		this.done_date = done_date;
 		this.status = "입고예정";
 		System.out.println("여기들어옴");
-		String makeDate = new SimpleDateFormat("YYMMddHHmmssms").format(System.currentTimeMillis());
-		this.inst_reg_date = makeDate;
-		this.instruction_no = makeDate;
+		long curTime = System.currentTimeMillis();
+		String makeDate = new SimpleDateFormat("YYMMddHHmmssms").format(curTime);
 		this.lot_no = makeDate;
+		this.inst_reg_date = new SimpleDateFormat("YYYY-MM-dd").format(curTime);
+		this.instruction_no = makeDate;
 	}
 	
 	

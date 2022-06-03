@@ -17,19 +17,19 @@
     	select *
     	from Import
     	where
-    	<if test="status != null">status=#{status} and</if>
-    	<if test="location != null">location=#{location} and</if>
-    	<if test="product_family != null">product_family=#{product_family} and</if>
-    	<if test="lot_no != null">lot_no like CONCAT('%',#{lot_no},'%') and</if>
-    	<if test="item_no != null">item_no like CONCAT('%',#{item_no},'%') and</if>
-    	<if test="item_name != null">item_name=#{item_name} and</if>
-    	<if test="to_warehouse != null">to_warehouse=#{to_warehouse} and</if>
-    	<if test="unit != null">unit=#{unit} and</if>
-    	<if test="order_date != null">order_date=#{order_date} and</if>
-    	<if test="target != null">target= like CONCAT('%',#{target},'%') and</if>
-    	<if test="inst_reg_date_Date != null">inst_reg_date_Date=#{inst_reg_date_Date} and</if>
-    	<if test="inst_deatline != null">inst_deatline=#{inst_deatline} and</if>
-    	<if test="done_date != null">done_date=#{done_date} and</if>
+    	<if test='status != null and status neq ""'>status=#{status} and</if>
+    	<if test='location != null and location neq ""'>location=#{location} and</if>
+    	<if test='product_family != null and product_family neq ""'>product_family=#{product_family} and</if>
+    	<if test='lot_no != null and lot_no neq ""'>lot_no like CONCAT('%',#{lot_no},'%') and</if>
+    	<if test='item_no != null and item_no neq ""'>item_no like CONCAT('%',#{item_no},'%') and</if>
+    	<if test='item_name != null and item_name neq ""'>item_name=#{item_name} and</if>
+    	<if test='to_warehouse != null and to_warehouse neq ""'>to_warehouse=#{to_warehouse} and</if>
+    	<if test='unit != null and unit neq ""'>unit=#{unit} and</if>
+    	<if test='order_date != null and order_date neq ""'>order_date=#{order_date} and</if>
+    	<if test='target != null and target neq ""'>target= like CONCAT('%',#{target},'%') and</if>
+    	<if test='inst_reg_date != null and inst_reg_date neq ""'>inst_reg_date=#{inst_reg_date} and</if>
+    	<if test='inst_deadline != null and inst_deadline neq ""'>inst_deadline=#{inst_deadline} and</if>
+    	<if test='done_date != null and done_date neq ""'>done_date=#{done_date} and</if>
     	(weight between #{min_weight} and #{max_weight}) and
     	(thickness between #{min_thickness} and #{max_thickness}) and
     	(height between #{min_height} and #{max_height}) and
