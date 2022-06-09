@@ -12,5 +12,4 @@ import Pack.vo.LogiImportVo;
 @Mapper
 public interface TestMapper {
     List<TestVo> selectTest();
-    List<LogiImportVo> selectAll();
 }

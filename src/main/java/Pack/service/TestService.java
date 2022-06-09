@@ -17,8 +17,4 @@ public class TestService {
     public List<TestVo> selectTest() {
         return mapper.selectTest();
     }
-    
-    public List<LogiImportVo> selectAll() {
-        return mapper.selectAll();
-    }
 }

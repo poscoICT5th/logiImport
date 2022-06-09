@@ -5,8 +5,4 @@
     <select id="selectTest"  resultType="TestVo">
         SELECT 'Test123331' AS NAME
     </select>
-    
-    <select id="selectAll"  resultType="LogiImportVo">
-        SELECT * from Import
-    </select>
 </mapper>
