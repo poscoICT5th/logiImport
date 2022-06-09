@@ -15,6 +15,7 @@ import lombok.ToString;
 //@NoArgsConstructor
 public class LogiImportSearchDTO {
 	String status;
+	String industry_family;
 	String location;
 	String product_family;
 	String lot_no;
@@ -35,7 +36,7 @@ public class LogiImportSearchDTO {
 	double min_width;
 	double max_width;
 	String order_date;
-	String target;
+	String customer;
 	String inst_reg_date;
 	String inst_deadline;
 	String done_date;

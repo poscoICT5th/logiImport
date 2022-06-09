@@ -6,6 +6,7 @@ import java.util.Map;
 
 import javax.websocket.server.PathParam;
 
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -38,6 +39,8 @@ public class MainController {
 	TestService testService;
 	@Autowired
 	ImportService importService;
+	@Autowired
+	RabbitTemplate rabbitTemplate;
 	
 	@GetMapping("/test")
 	public List test() {
@@ -51,7 +54,6 @@ public class MainController {
 		System.out.println("import all");
 	    List<LogiImportVo> importAll = importService.selectAll();
 	    System.out.println(importAll);
-
 	    return importAll;
 	}
 	
@@ -59,29 +61,19 @@ public class MainController {
 	public List importSearch(LogiImportSearchDTO logiImportSearchDTO) {
 		System.out.println("import search");
 		System.out.println(logiImportSearchDTO);
-//		Object json = (Object) myHeader.get("conditions");
-//		System.out.println(json);
 	    List<LogiImportVo> importSearch = importService.selectSome(logiImportSearchDTO);
 		return importSearch;
 	}
 	
 	@PostMapping("/import")
 	public boolean importAdd(@RequestBody LogiImportDTO data) {
-//	public boolean importAdd(@RequestBody LogiImportVo data) {
 		System.out.println("post 들어감");
 		System.out.println(data); 
 		int result = importService.insert(data);
 		return result==1?true:false;
 	}
 	
-	@DeleteMapping("import/{instructionNo}")
-	public boolean importDelete(@PathVariable String instructionNo) {
-		System.out.println(instructionNo);
-		int result = importService.delete(instructionNo);
-		return result==1?true:false;
-	}
-	
-	@DeleteMapping("import")
+	@DeleteMapping("/import")
 	public boolean importDeletes(@RequestBody LogiImportDeleteList logiImportDeleteList) {
 		System.out.println("delete List");
 		System.out.println(logiImportDeleteList);
@@ -89,10 +81,24 @@ public class MainController {
 		return result==1?true:false;
 	}
 	
-	@PutMapping("import/{instructionNo}")
+	@DeleteMapping("/import/{instructionNo}")
+	public boolean importDelete(@PathVariable String instructionNo) {
+		System.out.println(instructionNo);
+		int result = importService.delete(instructionNo);
+		return result==1?true:false;
+	}
+	
+	@PutMapping("/import/{instructionNo}")
 	public boolean importConfirm(@PathVariable String instructionNo) {
 		System.out.println(instructionNo);
 		int result = importService.confirm(instructionNo);
-		return result==1?true:false;
+		if (result > 0) {
+			LogiImportVo importConfirmData = importService.selectByInstNo(instructionNo);
+			System.out.println(importConfirmData);
+			rabbitTemplate.convertAndSend("posco", "import.Inventory.add", importConfirmData);
+			return true;			
+		} else {
+			return false;
+		}
 	}
 }

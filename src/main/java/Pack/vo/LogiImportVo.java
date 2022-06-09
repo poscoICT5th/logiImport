@@ -17,6 +17,7 @@ import lombok.ToString;
 //@NoArgsConstructor
 public class LogiImportVo {
 	String status;
+	String industry_family;
 	String location;
 	String instruction_no;
 	String product_family;
@@ -26,7 +27,7 @@ public class LogiImportVo {
 	int amount;
 	float weight;
 	String unit;
-	String target;
+	String customer;
 	double width;
 	float thickness;
 	float height;
@@ -36,34 +37,5 @@ public class LogiImportVo {
 	String order_date;
 	String inst_reg_date;
 	String inst_deadline;
-	String done_date;
-//	public LogiImportVo(String location, String product_family, String item_no, String item_name, int amount,
-//			float weight, String unit, String target, double width, float thickness, float height, int order_amount,
-//			int im_amount, String to_warehouse, String order_date, String inst_deadline, String done_date) {
-//		this.location = location;
-//		this.product_family = product_family;
-//		this.item_no = item_no;
-//		this.item_name = item_name;
-//		this.amount = amount;
-//		this.weight = weight;
-//		this.unit = unit;
-//		this.target = target;
-//		this.width = width;
-//		this.thickness = thickness;
-//		this.height = height;
-//		this.order_amount = order_amount;
-//		this.im_amount = im_amount;
-//		this.to_warehouse = to_warehouse;
-//		this.order_date = order_date;
-//		this.inst_deadline = inst_deadline;
-//		this.done_date = done_date;
-//		this.status = "입고예정";
-//		System.out.println("여기들어옴");
-//		String makeDate = new SimpleDateFormat("YYMMddHHmmssms").format(System.currentTimeMillis());
-//		this.inst_reg_date = makeDate;
-//		this.instruction_no = makeDate;
-//		this.lot_no = makeDate;
-//	}
-	
-	
+	String done_date;	
 }

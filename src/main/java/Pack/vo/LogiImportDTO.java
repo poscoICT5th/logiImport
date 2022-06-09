@@ -15,6 +15,7 @@ import lombok.ToString;
 //@NoArgsConstructor
 public class LogiImportDTO {
 	String status;
+	String industry_family;
 	String location;
 	String instruction_no;
 	String product_family;
@@ -24,7 +25,7 @@ public class LogiImportDTO {
 	int amount;
 	float weight;
 	String unit;
-	String target;
+	String customer;
 	double width;
 	float thickness;
 	float height;
@@ -35,9 +36,10 @@ public class LogiImportDTO {
 	String inst_reg_date;
 	String inst_deadline;
 	String done_date;
-	public LogiImportDTO(String location, String product_family, String item_no, String item_name, int amount,
-			float weight, String unit, String target, double width, float thickness, float height, int order_amount,
+	public LogiImportDTO(String industry_family, String location, String product_family, String item_no, String item_name, int amount,
+			float weight, String unit, String customer, double width, float thickness, float height, int order_amount,
 			int im_amount, String to_warehouse, String order_date, String inst_deadline, String done_date) {
+		this.industry_family = industry_family;
 		this.location = location;
 		this.product_family = product_family;
 		this.item_no = item_no;
@@ -45,7 +47,7 @@ public class LogiImportDTO {
 		this.amount = amount;
 		this.weight = weight;
 		this.unit = unit;
-		this.target = target;
+		this.customer = customer;
 		this.width = width;
 		this.thickness = thickness;
 		this.height = height;

@@ -16,7 +16,7 @@ import Pack.vo.LogiImportVo;
 public interface ImportMapper {
     List<LogiImportVo> selectAll();
     
-    LogiImportVo selectByInstNo();
+    LogiImportVo selectByInstNo(String instructionNo);
 
 	int insert(LogiImportDTO logiImportDTO);
 //	int insert(LogiImportVo logiImportDTO);

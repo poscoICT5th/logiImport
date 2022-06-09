@@ -20,8 +20,8 @@ public class ImportService {
         return importMapper.selectAll();
     }
     
-    public LogiImportVo selectByInstNo() {
-    	return importMapper.selectByInstNo();
+    public LogiImportVo selectByInstNo(String instructionNo) {
+    	return importMapper.selectByInstNo(instructionNo);
     }
 
     public List<LogiImportVo> selectSome(LogiImportSearchDTO logiImportSearchDTO) {
@@ -29,22 +29,10 @@ public class ImportService {
     }
 
 	public int insert(LogiImportDTO logiImportDTO) {
-//		logiImportVo.setStatus("입고예정");
-		
-//		return 1;
 		System.out.println(4444);
 		System.out.println(logiImportDTO);
 		return importMapper.insert(logiImportDTO);
 	}
-
-//	public int insert(LogiImportVo logiImportDTO) {
-////		logiImportVo.setStatus("입고예정");
-//		
-////		return 1;
-//		System.out.println(4444);
-//		System.out.println(logiImportDTO);
-//		return importMapper.insert(logiImportDTO);
-//	}
 
 	public int delete(String instructionNo) {
 		return importMapper.delete(instructionNo);
