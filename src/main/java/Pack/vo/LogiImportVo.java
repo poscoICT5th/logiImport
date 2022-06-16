@@ -16,26 +16,25 @@ import lombok.ToString;
 //@AllArgsConstructor
 //@NoArgsConstructor
 public class LogiImportVo {
-	String status;
-	String industry_family;
-	String location;
 	String instruction_no;
-	String product_family;
+	String status;
 	String lot_no;
-	String item_no;
+	String item_code;
 	String item_name;
-	int amount;
-	float weight;
-	String unit;
-	String customer;
-	double width;
-	float thickness;
-	float height;
 	int order_amount;
 	int im_amount;
+	String unit;
+	float weight;
+	float width;
+	float thickness;
+	float height;
+	String industry_family;
+	String product_family;
+	String location;
 	String to_warehouse;
+	String customer;
 	String order_date;
 	String inst_reg_date;
 	String inst_deadline;
-	String done_date;	
+	String done_date;
 }

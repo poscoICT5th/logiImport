@@ -21,7 +21,7 @@
     	<if test='location != null and location neq "전체보기"'>location=#{location} and</if>
     	<if test='product_family != null and product_family neq "전체보기"'>product_family=#{product_family} and</if>
     	<if test='lot_no != null and lot_no neq "전체보기"'>lot_no like CONCAT('%',#{lot_no},'%') and</if>
-    	<if test='item_no != null and item_no neq "전체보기"'>item_no like CONCAT('%',#{item_no},'%') and</if>
+    	<if test='item_code != null and item_code neq "전체보기"'>item_code like CONCAT('%',#{item_code},'%') and</if>
     	<if test='item_name != null and item_name neq "전체보기"'>item_name=#{item_name} and</if>
     	<if test='to_warehouse != null and to_warehouse neq "전체보기"'>to_warehouse=#{to_warehouse} and</if>
     	<if test='unit != null and unit neq "전체보기"'>unit=#{unit} and</if>
@@ -42,23 +42,23 @@
         INSERT
         INTO Import 
         VALUES (
-        	#{status},
-        	#{location},
         	#{instruction_no},
-        	#{product_family},
+        	#{status},
         	#{lot_no},
-        	#{item_no},
+        	#{item_code},
         	#{item_name},
-        	#{amount},
-        	#{weight},
+        	#{order_amount},
+        	#{im_amount},
         	#{unit},
-        	#{customer},
+        	#{weight},
         	#{width},
         	#{thickness},
         	#{height},
-        	#{order_amount},
-        	#{im_amount},
+        	#{industry_family},
+        	#{product_family},
+        	#{location},
         	#{to_warehouse},
+        	#{customer},
         	#{order_date},
         	#{inst_reg_date},
         	#{inst_deadline},
