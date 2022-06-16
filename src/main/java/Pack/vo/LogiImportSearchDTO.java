@@ -19,7 +19,7 @@ public class LogiImportSearchDTO {
 	String location;
 	String product_family;
 	String lot_no;
-	String item_no;
+	String item_code;
 	String item_name;
 	String to_warehouse;
 	String unit;
