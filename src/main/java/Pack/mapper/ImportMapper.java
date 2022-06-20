@@ -28,4 +28,6 @@ public interface ImportMapper {
 	int confirm(String instructionNo);
 
 	int deletes(List logiImportDeleteList);
+
+	LogiImportVo selectByLotNo(String lotNo);
 }

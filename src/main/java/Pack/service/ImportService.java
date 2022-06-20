@@ -45,4 +45,8 @@ public class ImportService {
 	public int deletes(LogiImportDeleteList logiImportDeleteList) {
 		return importMapper.deletes(logiImportDeleteList.getLogiImportDeleteList());
 	}
+
+	public LogiImportVo selectByLotNo(String lotNo) {
+		return importMapper.selectByLotNo(lotNo);
+	}
 }
