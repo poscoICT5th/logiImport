@@ -101,4 +101,11 @@ public class MainController {
 			return false;
 		}
 	}
+	
+	@GetMapping("/inst/{lotNo}")
+	public LogiImportVo selectByLotNo(@PathVariable String lotNo) {
+		System.out.println(lotNo);
+		LogiImportVo result = importService.selectByLotNo(lotNo);
+		return result;
+	}
 }
