@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 
 import Pack.mapper.ImportMapper;
 import Pack.vo.LogiImportDTO;
-import Pack.vo.LogiImportDeleteList;
+import Pack.vo.LogiImportList;
 import Pack.vo.LogiImportSearchDTO;
 import Pack.vo.LogiImportVo;
 
@@ -28,7 +28,7 @@ public class ImportService {
     	return importMapper.selectSome(logiImportSearchDTO);
     }
 
-	public int insert(LogiImportDTO logiImportDTO) {
+	public int insert(List<LogiImportDTO> logiImportDTO) {
 		System.out.println(4444);
 		System.out.println(logiImportDTO);
 		return importMapper.insert(logiImportDTO);
@@ -42,11 +42,19 @@ public class ImportService {
 		return importMapper.confirm(instructionNo);
 	}
 
-	public int deletes(LogiImportDeleteList logiImportDeleteList) {
-		return importMapper.deletes(logiImportDeleteList.getLogiImportDeleteList());
+	public int deletes(LogiImportList logiImportList) {
+		return importMapper.deletes(logiImportList.getLogiImportList());
 	}
 
 	public LogiImportVo selectByLotNo(String lotNo) {
 		return importMapper.selectByLotNo(lotNo);
+	}
+
+	public int cancels(LogiImportList logiImportList) {
+		return importMapper.cancels(logiImportList.getLogiImportList());
+	}
+
+	public int rollback(LogiImportList logiImportList) {
+		return importMapper.rollback(logiImportList.getLogiImportList());
 	}
 }

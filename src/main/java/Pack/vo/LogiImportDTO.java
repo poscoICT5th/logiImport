@@ -2,9 +2,10 @@ package Pack.vo;
 
 import java.text.SimpleDateFormat;
 
-import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
+
+import Pack.service.AutoIncrese;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
@@ -57,7 +58,7 @@ public class LogiImportDTO {
 		this.inst_deadline = inst_deadline;
 		this.status = "입고예정";
 		long curTime = System.currentTimeMillis();
-		String makeDate = new SimpleDateFormat("YYMMddHHmmssms").format(curTime);
+		String makeDate = new SimpleDateFormat("YYMMddHHmmssms").format(curTime) + AutoIncrese.getNum();
 		this.instruction_no = makeDate;
 		this.lot_no = product_family + makeDate;
 		this.inst_reg_date = new SimpleDateFormat("YYYY-MM-dd").format(curTime);
