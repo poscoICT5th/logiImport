@@ -38,32 +38,34 @@
     	(width between #{min_width} and #{max_width})
     </select>
     
-    <insert id="insert" parameterType="LogiImportDTO">
-        INSERT
-        INTO Import 
-        VALUES (
-        	#{instruction_no},
-        	#{status},
-        	#{lot_no},
-        	#{item_code},
-        	#{item_name},
-        	#{order_amount},
-        	#{im_amount},
-        	#{unit},
-        	#{weight},
-        	#{width},
-        	#{thickness},
-        	#{height},
-        	#{industry_family},
-        	#{product_family},
-        	#{location},
-        	#{to_warehouse},
-        	#{customer},
-        	#{order_date},
-        	#{inst_reg_date},
-        	#{inst_deadline},
-        	#{done_date}
-        );
+    <insert id="insert" parameterType="List">
+    	<foreach collection="logiImportDTO" item="item" index="index">
+	        INSERT
+	        INTO Import 
+	        VALUES ( 
+	        	#{item.instruction_no},
+	        	#{item.status},
+	        	#{item.lot_no},
+	        	#{item.item_code},
+	        	#{item.item_name},
+	        	#{item.order_amount},
+	        	#{item.im_amount},
+	        	#{item.unit},
+	        	#{item.weight},
+	        	#{item.width},
+	        	#{item.thickness},
+	        	#{item.height},
+	        	#{item.industry_family},
+	        	#{item.product_family},
+	        	#{item.location},
+	        	#{item.to_warehouse},
+	        	#{item.customer},
+	        	#{item.order_date},
+	        	#{item.inst_reg_date},
+	        	#{item.inst_deadline},
+	        	#{item.done_date}
+	        );
+    	</foreach>
     </insert>
     
     <delete id="delete" parameterType="String">
@@ -73,12 +75,28 @@
     </delete>
     
     <delete id="deletes" parameterType="List">
-    	<foreach collection="logiImportDeleteList" item="instructionNo" index="index">
+    	<foreach collection="logiImportList" item="instructionNo" index="index">
 		    delete
 			from Import
 			where instruction_no=#{instructionNo};
 		</foreach>
     </delete>
+    
+    <update id="cancels" parameterType="List">
+    	<foreach collection="logiImportList" item="instructionNo" index="index">
+		    update Import
+		    SET status = "입고취소"
+			where instruction_no=#{instructionNo};
+		</foreach>
+    </update>
+    
+    <update id="rollback" parameterType="List">
+    	<foreach collection="logiImportList" item="instructionNo" index="index">
+		    update Import
+		    SET status = "입고예정"
+			where instruction_no=#{instructionNo};
+		</foreach>
+    </update>
     
     <update id="confirm" parameterType="String">
     	UPDATE Import 

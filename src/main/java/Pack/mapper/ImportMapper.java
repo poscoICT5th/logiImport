@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 
 import Pack.vo.TestVo;
 import Pack.vo.LogiImportDTO;
-import Pack.vo.LogiImportDeleteList;
+import Pack.vo.LogiImportList;
 import Pack.vo.LogiImportSearchDTO;
 import Pack.vo.LogiImportVo;
 
@@ -18,7 +18,7 @@ public interface ImportMapper {
     
     LogiImportVo selectByInstNo(String instructionNo);
 
-	int insert(LogiImportDTO logiImportDTO);
+	int insert(List<LogiImportDTO> logiImportDTO);
 //	int insert(LogiImportVo logiImportDTO);
 
 	List<LogiImportVo> selectSome(LogiImportSearchDTO logiImportSearchDTO);
@@ -27,7 +27,11 @@ public interface ImportMapper {
 
 	int confirm(String instructionNo);
 
-	int deletes(List logiImportDeleteList);
+	int deletes(List logiImportList);
 
 	LogiImportVo selectByLotNo(String lotNo);
+
+	int cancels(List<String> logiImportList);
+
+	int rollback(List<String> logiImportList);
 }
