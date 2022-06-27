@@ -24,12 +24,14 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import Pack.vo.TestVo;
+import Pack.service.AutoIncrese;
 import Pack.service.ImportService;
 import Pack.service.TestService;
 import Pack.vo.LogiImportDTO;
-import Pack.vo.LogiImportDeleteList;
+import Pack.vo.LogiImportList;
 import Pack.vo.LogiImportSearchDTO;
 import Pack.vo.LogiImportVo;
+import Pack.vo.SendTraceDTO;
 
 @CrossOrigin(origins = "*")
 @RestController
@@ -66,24 +68,33 @@ public class MainController {
 	}
 	
 	@PostMapping("/import")
-	public boolean importAdd(@RequestBody LogiImportDTO data) {
+	public boolean importAdd(@RequestBody List<LogiImportDTO> data) {
 		System.out.println("post 들어감");
 		System.out.println(data); 
 		int result = importService.insert(data);
-		return result==1?true:false;
+		AutoIncrese.setNum();
+		return result!=0?true:false;
 	}
 	
 	@DeleteMapping("/import")
-	public boolean importDeletes(@RequestBody LogiImportDeleteList logiImportDeleteList) {
+	public boolean importDeletes(@RequestBody LogiImportList logiImportList) {
 		System.out.println("delete List");
-		System.out.println(logiImportDeleteList);
-		int result = importService.deletes(logiImportDeleteList);
+		System.out.println(logiImportList);
+		int result = importService.cancels(logiImportList);
+		return result==1?true:false;
+	}
+
+	@PutMapping("/import/rollback")
+	public boolean importRollbacks(@RequestBody LogiImportList logiImportList) {
+		System.out.println("rollback List");
+		System.out.println(logiImportList);
+		int result = importService.rollback(logiImportList);
 		return result==1?true:false;
 	}
 	
 	@DeleteMapping("/import/{instructionNo}")
 	public boolean importDelete(@PathVariable String instructionNo) {
-		System.out.println(instructionNo);
+		System.out.println(instructionNo); 
 		int result = importService.delete(instructionNo);
 		return result==1?true:false;
 	}
@@ -96,6 +107,7 @@ public class MainController {
 			LogiImportVo importConfirmData = importService.selectByInstNo(instructionNo);
 			System.out.println(importConfirmData);
 			rabbitTemplate.convertAndSend("posco", "import.Inventory.add", importConfirmData);
+			rabbitTemplate.convertAndSend("posco", "import.Traceback.import", new SendTraceDTO(importConfirmData));
 			return true;			
 		} else {
 			return false;
@@ -108,4 +120,5 @@ public class MainController {
 		LogiImportVo result = importService.selectByLotNo(lotNo);
 		return result;
 	}
+	
 }
