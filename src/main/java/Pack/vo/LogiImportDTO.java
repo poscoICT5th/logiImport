@@ -58,7 +58,7 @@ public class LogiImportDTO {
 		this.inst_deadline = inst_deadline;
 		this.status = "입고예정";
 		long curTime = System.currentTimeMillis();
-		String makeDate = new SimpleDateFormat("YYMMddHHmmssms").format(curTime) + AutoIncrese.getNum();
+		String makeDate = new SimpleDateFormat("YYMMddHHmmssSSS").format(curTime) + AutoIncrese.getNum();
 		this.instruction_no = makeDate;
 		this.lot_no = product_family + makeDate;
 		this.inst_reg_date = new SimpleDateFormat("YYYY-MM-dd").format(curTime);
