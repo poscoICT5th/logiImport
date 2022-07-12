@@ -18,7 +18,8 @@ public class SendTraceDTO {
 	String item_code;
 	int amount;
 	String stock_quality_status;
-	String stock_cause;
+	String status_cause;
+	String inventory_date;
 	List<ItemInfo> consumed_infos;
 	
 	public SendTraceDTO(LogiImportVo importConfirmData) {
@@ -26,6 +27,7 @@ public class SendTraceDTO {
 		this.item_name = importConfirmData.getItem_name();
 		this.item_code = importConfirmData.getItem_code();
 		this.amount = importConfirmData.getIm_amount();
+		this.inventory_date = importConfirmData.getDone_date();
 		this.consumed_infos = Collections.EMPTY_LIST;
 	}
 }
