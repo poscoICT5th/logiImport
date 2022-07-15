@@ -5,6 +5,7 @@
     <select id="selectAll" resultType="LogiImportVo">
         SELECT * 
         from Import
+        order by inst_reg_date desc;
     </select>
     
     <select id="selectByInstNo" parameterType="String" resultType="LogiImportVo">
@@ -36,6 +37,7 @@
     	(order_amount between #{min_order_amount} and #{max_order_amount}) and
     	(im_amount between #{min_im_amount} and #{max_im_amount}) and
     	(width between #{min_width} and #{max_width})
+    	order by inst_reg_date desc;
     </select>
     
     <insert id="insert" parameterType="List">
