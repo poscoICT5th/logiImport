@@ -8,6 +8,9 @@ import javax.websocket.server.PathParam;
 
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,6 +22,7 @@ import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.client.RestTemplate;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -31,6 +35,7 @@ import Pack.vo.LogiImportDTO;
 import Pack.vo.LogiImportList;
 import Pack.vo.LogiImportSearchDTO;
 import Pack.vo.LogiImportVo;
+import Pack.vo.ResultDTO;
 import Pack.vo.SendTraceDTO;
 
 @CrossOrigin(origins = "*")
@@ -60,7 +65,7 @@ public class MainController {
 	}
 	
 	@GetMapping("/search")
-	public List importSearch(LogiImportSearchDTO logiImportSearchDTO) {
+	public List<LogiImportVo> importSearch(LogiImportSearchDTO logiImportSearchDTO) {
 		System.out.println("import search");
 		System.out.println(logiImportSearchDTO);
 	    List<LogiImportVo> importSearch = importService.selectSome(logiImportSearchDTO);
@@ -68,12 +73,18 @@ public class MainController {
 	}
 	
 	@PostMapping("/import")
-	public boolean importAdd(@RequestBody List<LogiImportDTO> data) {
+	public ResultDTO importAdd(@RequestBody List<LogiImportDTO> data) {
 		System.out.println("post 들어감");
 		System.out.println(data); 
 		int result = importService.insert(data);
 		AutoIncrese.setNum();
-		return result!=0?true:false;
+		RestTemplate restTemplate = new RestTemplate();
+		if (result > 0) {
+			for (LogiImportDTO logiImportDTO : data) {
+				restTemplate.getForEntity("35.77.54.132:8080/hotline/send/type/"+"입고"+"/topic/" + logiImportDTO.getTo_warehouse(), String.class);
+			}
+		}
+		return new ResultDTO(result);
 	}
 	
 	@DeleteMapping("/import")
