@@ -81,7 +81,7 @@ public class MainController {
 		RestTemplate restTemplate = new RestTemplate();
 		if (result > 0) {
 			for (LogiImportDTO logiImportDTO : data) {
-				restTemplate.getForEntity("35.77.54.132:8080/hotline/send/type/"+"입고"+"/topic/" + logiImportDTO.getTo_warehouse(), String.class);
+				restTemplate.getForEntity("http://35.77.54.132:8080/hotline/send/type/"+"입고"+"/topic/" + logiImportDTO.getTo_warehouse(), String.class);
 			}
 		}
 		return new ResultDTO(result);
