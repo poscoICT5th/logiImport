@@ -3,6 +3,7 @@ package Pack.vo;
 import java.text.SimpleDateFormat;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -40,4 +41,9 @@ public class LogiImportSearchDTO {
 	String inst_reg_date;
 	String inst_deadline;
 	String done_date;
+	
+	@Builder
+	LogiImportSearchDTO() {
+		
+	}
 }
