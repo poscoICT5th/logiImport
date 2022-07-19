@@ -61,7 +61,7 @@ public class LogiImportDTO {
 		String makeDate = new SimpleDateFormat("YYMMddHHmmssSSS").format(curTime) + AutoIncrese.getNum();
 		this.instruction_no = makeDate;
 		this.lot_no = product_family + makeDate;
-		this.inst_reg_date = new SimpleDateFormat("YYYY-MM-dd").format(curTime);
+		this.inst_reg_date = new SimpleDateFormat("YYYY-MM-dd HH:mm:ss").format(curTime);
 	}
 	
 	
